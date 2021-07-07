@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container my-3">
+  <form id="bbs_form" action="/board/{{action}}BBS" onsubmit="return vaildSubmit()" method="post" enctype="multipart/form-data" >
+      <div class="form-group">
+          <input type="hidden" name="bid" value="{{article.bid}}">
+          <input type="hidden" name="writer" value="홍길동">
+          <input type="hidden" name="page" value="{{page}}">
+          <input type="hidden" name="searchParam" value="{{searchParam}}">
+
+         <label for="subject">제목</label><input type="text" class="form-control" id="subject" name="subject" value="{{ article.subject}}" placeholder="제목">
+        <div class="card my-3">
+            <div class="card-body">
+                <div class="card-text" style="white-space: pre-line;">
+                <textarea name="content" id="contents" class="form-control" rows="5" placeholder="내용을 입력하세요">{{ article.content }}</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="/board?page={{page}}&amp;searchParam={{searchParam}}" class="btn btn-primary">목록</a>
+    <input type="submit"  class="btn btn-success" value="저장"/>
+  </form>
+
+    <script>
+       /*
+       //입력폼 디버깅 용 
+        let text;
+        let textarea = document.getElementById('contents');
+        textarea.addEventListener('input', function getText() {
+            text = textarea.value;
+            console.log("textarea.value",textarea.value)
+            console.log("text",text)
+          });
+        */
+        const vaildSubmit= ()=>{
+            if(!document.getElementById("subject").value){
+                alert("제목을 입력하세요.")
+                document.getElementById("subject").focus()
+                return false;
+            }
+
+            if(!document.getElementById("contents").value){
+                alert("내용을 입력하세요.")
+                document.getElementById("contents").focus()
+                return false;
+            }
+
+            return true
+        }
+    </script>
+
+</div>
+{% endblock %}

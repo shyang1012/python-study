@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container my-3">
+    <a href="/board" class="btn btn-primary">게시판</a>
+    <a href="/multiples" class="btn btn-primary">3과 5의 배수 합치기</a>
+    <br>
+    <h2>구구단</h2>
+    <form action="/gugu" method="get">
+        <select id ="dan" name="dan" class="form-select" multiple >
+            {%for i in range(2,10) %}
+            <option value="{{i}}" {%if dan == i%}selected{%endif%}>{{i}}단</option>
+            {%endfor%}
+        </select>
+        <input type="submit" value="구구단 선택" class="btn btn-primary">
+    </form>
+    <div>
+        <h2>하위디렉토리 검색하기(doit 폴더 *.py 파일)</h2>
+        {{dirList}}
+    </div>
+</div>
+{% endblock %}
