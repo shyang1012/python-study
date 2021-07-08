@@ -132,7 +132,7 @@ def hexrepl(match):
 
 
 if __name__ == '__main__':
-    """
+    """ 
     https://regex101.com/ 에서 기본적인 정규식은 테스트 가능하다.
     """
     reg = r"[a-z]+"
